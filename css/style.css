@@ -161,6 +161,7 @@ header {
 
 .nav__list {
     list-style: none;
+    text-align: center;
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -295,7 +296,7 @@ header {
         left: -1.5em;
         /* lining up the intro and subtitle text */
         width: calc(100% + 1.5em);
-        background-color: var(--clr-accent);
+        /* background-color: var(--clr-accent); */
     }
 }
 
@@ -453,7 +454,6 @@ p {
 
 .portfolio-item-individual h3 {
     text-align: center;
-    text-decoration: underline;
 }
 
 .portfolio-item-individual p {
@@ -463,18 +463,23 @@ p {
     margin-right: auto;
     margin-top: 2em;
     margin-bottom: 0;
-    padding-bottom: 1rem;
+    padding-bottom: 1rem;    
 }
 
-.portfolio-item-individual--pain {
-    text-align: center;
+.portfolio-item-individual ul,
+.portfolio-item-individual li {
+    max-width: 900px;
+    padding-top: 0;
+    margin-left: 2em;
+    margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 0;
 }
 
-.portfolio-item-individual--painitem {
-    text-align: center;
-    list-style: none;
-    line-height: 3em;
+.portfolio-item-individual img {
+    max-width: 80%;
+    padding-top: 3em;
+    margin: 0 auto;
 }
 
-/* mental health portfolio item page */
 
