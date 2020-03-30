@@ -1,0 +1,480 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* changing how padding is calculated */
+}
+
+/* custom properties that can be changed based on project needs */
+
+:root {
+    /* setting up our custom properties */
+    --ff-primary: 'Roboto', sans-serif;
+    /*font family*/
+    --ff-secondary: 'Open Sans', sans-serif;
+
+    --fw-reg: 300;
+    /*font weight*/
+    --fw-bold: 900;
+
+    --clr-light: #fff;
+    --clr-dark: #000000;
+    --clr-accent: #DD9F98;
+
+    --fs-h1: 3rem;
+    --fs-h2: 2.25rem;
+    --fs-h3: 1.25rem;
+    --fs-body: 1rem;
+
+}
+
+@media (min-width: 800px) {
+
+    /*redefine font sizes when they appear on larger screen sizes*/
+    :root {
+        --fs-h1: 4.5rem;
+        --fs-h2: 3.75rem;
+        --fs-h3: 1.5rem;
+        --fs-body: 1.125rem;
+    }
+}
+
+/* general styles */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--clr-light);
+    color: var(--clr-dark);
+    margin: 0;
+    font-family: var(--ff-primary);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+}
+
+section {
+    padding: 5em 2em;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+strong {
+    font-weight: var(--fw-bold)
+}
+
+:focus { /*focus outline of the hamburger menu*/
+    outline: 3px solid var(--clr-accent);
+    outline-offset: 5px;
+}
+
+/* buttons */
+
+/* .btn {
+    display: inline-block;
+    padding: .5em 2.5em;
+    background: var(--clr-accent);
+    color: var(--clr-dark);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: var(--fw-bold);
+    transition: transform 200ms ease-in-out
+} */
+
+/* Typography */
+
+h1,
+h2,
+h3 {
+    line-height: 1.1;
+    margin: 0;
+}
+
+h1 {
+    font-size: var(--fs-h1)
+}
+
+h2 {
+    font-size: var(--fs-h2)
+}
+
+h3 {
+    font-size: var(--fs-h3)
+}
+
+.section__title {
+    margin-bottom: .25em;
+}
+
+.section__title--intro {
+    font-weight: var(--fw-reg);
+}
+
+.section__title--intro strong {
+    display: block;
+    /* styling the strong tag so that it always displays on the next line */
+}
+
+.section__subtitle {
+    margin: 0;
+    font-size: var(--fs-h3);
+}
+
+.section__subtitle--intro {
+    font-family: var(--ff-secondary);
+    padding: .25em;
+    margin-bottom: 1rem;
+}
+
+/* header */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.logo {
+    max-width: 100px;
+    width: 20em;
+}
+
+.nav {
+    position: fixed;
+    background: var(--clr-dark);
+    color: var(--clr-light);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transform: translateX(100%);
+    transition: transform 250ms cubic-bezier(.5, 0, .5, 1);
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav__link {
+    color: inherit;
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-h3);
+    text-decoration: none;
+}
+
+.nav__link:hover {
+    color: var(--clr-accent);
+}
+
+.nav-toggle {
+    padding: .5em;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    z-index: 1000;
+}
+
+.nav-open .nav {
+    transform: translateX(0);
+    /*toggle the slide of the hamburger*/
+}
+
+.nav-open .nav-toggle {
+    position: fixed;
+}
+
+.nav-open .hamburger {
+    transform: rotate(.625turn);
+}
+
+.nav-open .hamburger::before {
+    transform: rotate(90deg) translateX(-6px);
+}
+
+.nav-open .hamburger::after {
+    opacity: 0;
+}
+
+/*hamburger*/
+.hamburger {
+    display: block;
+    position: relative;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    background: var(--clr-accent);
+    width: 2em;
+    height: 3px;
+    border-radius: 1em;
+    transition: transform 250ms ease-in-out;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.hamburger::before {
+    top: 6px;
+}
+
+.hamburger::after {
+    bottom: 6px;
+}
+
+/* intro section */
+
+.intro {
+    position: relative;
+}
+
+.section__subtitle--intro {
+    display: inline-block;
+}
+
+@media (min-width: 600px) {
+    .intro {
+        display: grid;
+        width: min-content;
+        margin: 0 auto;
+        /* setting the image and title to center despite screen size changes */
+        grid-column-gap: 1em;
+        grid-template-areas:
+            "img title"
+            "img subtitle";
+        grid-template-columns: min-content max-content;
+    }
+
+    .intro__img {
+        grid-area: img;
+        min-width: 350px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .section__subtitle--intro {
+        align-self: start;
+        grid-column: -1 / 1;
+        grid-row: 2;
+        text-align: right;
+        position: relative;
+        left: -1.5em;
+        /* lining up the intro and subtitle text */
+        width: calc(100% + 1.5em);
+    }
+
+    .section__subtitle--intro-portfolio {
+        align-self: start;
+        grid-column: -1 / 1;
+        grid-row: 2;
+        text-align: right;
+        position: relative;
+        left: -1.5em;
+        /* lining up the intro and subtitle text */
+        width: calc(100% + 1.5em);
+        background-color: var(--clr-accent);
+    }
+}
+
+/* what I do section */
+
+.about-me {
+    /* background-color: var(--clr-dark); this darkens the background-image */
+    background-image: url(../img/alex-rodriguez-santibanez-sNaugOUc4yk-unsplash\ 1.png);
+    background-size: cover;
+    color: var(--clr-light);
+    text-align: center;
+}
+
+.section__title.section__about--bd {
+    background-color: black;
+}
+
+.section__title--about {
+    color: black;
+    position: relative;
+}
+
+.section__title--about::after {
+    content: '';
+    /* need this otherwise pseudoelements won't appear */
+    display: block;
+    width: 3em;
+    height: 3px;
+    margin: 0.5em auto 1em;
+    background: black;
+}
+
+p {
+    margin: 4rem;
+    padding: 3rem;
+}
+
+/* my work */
+
+.my-work {
+    text-align: center;
+}
+
+.section__subtitle {
+    padding: 2px 7px 2px 2px;
+    margin-bottom: 20px;
+}
+
+.portfolio {
+    margin-top: 10em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* responsive grid */
+}
+
+.portfolio__item {
+    text-decoration: none;
+    border: 0 none;
+    color: black;
+}
+
+.portfolio__img {
+    max-width: 10rem;
+    padding: 1em;
+    border-style: solid ;
+    margin: 0 auto;
+    transition:
+        transform 750ms cubic-bezier(.5, 0, .5, 1);
+    opacity 250ms linear;
+}
+
+.portfolio__img--title {
+    margin-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+.portfolio__img:hover {
+    transform: scale(1.2);
+    opacity: .75;
+}
+
+.portfolio__more {
+    text-align: center;
+    margin-top: 2em; 
+    margin-bottom: 2em;
+}
+
+.portfolio__more--link {
+    color: black;
+    text-decoration: none;
+
+}
+
+.portfolio__more--link:hover {
+    opacity: .7;
+}
+
+.stripes {
+    background-image: url(../img/puria-berenji-n27lEoEkDdk-unsplash\ 1.png);
+    background-size: cover;
+}
+
+
+/* footer */
+
+.footer {
+    background: #111;
+    color: var(--clr-light);
+    text-align: center;
+    padding: 2.5em 0;
+    font-size: var(--fs-h3);
+}
+
+.footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer__link {
+    font-weight: var(--fw-bold);
+}
+
+.footer__link:hover,
+.social-list__link:hover {
+    opacity: .7;
+}
+
+.footer__link:hover {
+    text-decoration: underline;
+}
+
+.social-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    margin: 2em 0 0;
+    padding: 0;
+}
+
+.social-list__item {
+    margin: 0 .5em;
+}
+
+.social-list__link {
+    padding: .5em;
+}
+
+/* individual portfolio item styles */
+
+.portfolio-item-individual {
+    padding: 0 2em 2em;
+    max-width: 1000px; /*whenever you use max-width, make sure you use margin 0 auto to center it on the page */
+    margin: 0 auto;
+}
+
+.portfolio-item-individual h3 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.portfolio-item-individual p {
+    max-width: 900px;
+    padding-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 0;
+    padding-bottom: 1rem;
+}
+
+.portfolio-item-individual--pain {
+    text-align: center;
+}
+
+.portfolio-item-individual--painitem {
+    text-align: center;
+    list-style: none;
+    line-height: 3em;
+}
+
+/* mental health portfolio item page */
+
